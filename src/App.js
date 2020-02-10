@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
+// import { Route, Link } from 'react-router-dom';
 import './App.css';
+import dummyStore from './dummy-store';
+import Sidebar from './Sidebar/Sidebar';
+import NoteList from './NoteList/NoteList';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      folders: dummyStore.folders,
+      notes: dummyStore.notes,
+      selectedFolder: "",
+      selectedNote: "",
+    }
+  }
+
+  render() {
+    return (
+      <div className='App'>
+        <header>
+          <h1>Noteful</h1>
+        </header>
+        <main>
+          <Sidebar className="Sidebar" folders={ this.state.folders } />
+          <NoteList className="NoteList" notes={ this.state.notes } />
+        </main>
+      </div>
+      
+    );
+  }
+ 
 }
 
 export default App;

@@ -1,0 +1,18 @@
+.sideNav {
+  flex: 1;
+  border-right: solid black 1px;
+  max-width: 200px;
+  text-align: center;
+}
+
+.folderLink {
+  border-bottom: 1px solid black;
+  text-align: center;
+  padding: 10px;
+}
+
+.addFolderBtn {
+  padding: 10px;
+  width: 80%;
+  margin: 5px;
+}
