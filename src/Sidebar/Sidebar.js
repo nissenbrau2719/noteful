@@ -6,7 +6,7 @@ import './Sidebar.css';
 function Sidebar(props) {
 
   const folderList = props.folders.map(folder => {
-    return <div key={folder.id} className='folderLink'>
+      return <div key={folder.id} id={folder.id} className='folderLink' onClick={(e) => props.handleFolder(e.target.id)}>
      {folder.name}
     </div>
   });

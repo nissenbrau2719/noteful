@@ -1,13 +1,14 @@
 import React from 'react';
 import './NotePage.css';
 import Note from '../Note/Note';
+import './NotePage.css';
 
 function NotePage(props) {
   return (
     <div className='NotePage'>
       <div className='noteSidebar'>
         <button className='goBackBtn'>Go back</button>
-        <h2>{props.folderName}</h2> 
+        <h2 className='noteFolder'>{props.folderName}</h2> 
       </div>
       <div className='noteMain'>
         <Note note={props.note} />
