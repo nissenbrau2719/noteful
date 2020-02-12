@@ -7,7 +7,7 @@ function Note(props) {
 
   return (
     <div className='Note'>
-      <h2 className='noteTitle'>{props.note.name}</h2>
+      <h2 className='noteTitle' id={props.note.id} onClick={e => props.handleNote(e.target.id)}>{props.note.name}</h2>
       <div className='noteDetails'>
         <p className='modified'>Modified on {formattedDate}</p>
         <button className='deleteBtn'>Delete Note</button>

@@ -4,7 +4,7 @@ import Note from '../Note/Note';
 
 function NoteList(props) {
   const notes = props.notes.map(note => {
-  return <Note key={note.id} note={note} />
+  return <Note key={note.id} note={note} handleNote={props.handleNote} />
   })
 
   return (
