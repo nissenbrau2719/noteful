@@ -10,7 +10,6 @@ function Sidebar(props) {
           key={folder.id}
           id={folder.id}
           className="folderLink"
-          onClick={e => props.handleFolder(e.target.id)}
         >
           {folder.name}
         </div>

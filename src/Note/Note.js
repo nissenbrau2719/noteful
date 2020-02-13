@@ -9,7 +9,7 @@ function Note(props) {
   return (
     <div className='Note'>
       <h2 className='noteTitle' >
-        <Link to={`/note/${props.note.id}`} id={props.note.id} onClick={e => props.handleNote(e.target.id)}>{props.note.name}</Link>
+        <Link to={`/note/${props.note.id}`} id={props.note.id} >{props.note.name}</Link>
       </h2>
       <div className='noteDetails'>
         <p className='modified'>Modified on {formattedDate}</p>
