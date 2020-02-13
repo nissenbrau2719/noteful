@@ -5,21 +5,23 @@ import { NavLink } from "react-router-dom";
 function Sidebar(props) {
   const folderList = props.folders.map(folder => {
     return (
-      <NavLink to={`/folder/${folder.id}`}>
-        <div
-          key={folder.id}
+      <li key={folder.id} className="folderItem">
+        <NavLink
+          exact={true}
+          activeClassName="isActive"
+          to={`/folder/${folder.id}`}
           id={folder.id}
           className="folderLink"
         >
           {folder.name}
-        </div>
-      </NavLink>
+        </NavLink>
+      </li>
     );
   });
 
   return (
     <div className="sideNav">
-      {folderList}
+      <ul className="folderList">{folderList}</ul>
       <button className="addFolderBtn">Add Folder</button>
     </div>
   );
