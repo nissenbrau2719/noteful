@@ -32,7 +32,7 @@ class App extends React.Component {
 
   handleNote = (noteId) => {
     let selectNote = this.state.notes.find(note => note.id === noteId);
-    let selectFolder = this.state.folder.find(folder => folder.id === selectNote.folder.id)
+    let selectFolder = this.state.folders.find(folder => folder.id === selectNote.folderId)
     this.setState({
       selectedNote: selectNote,
       selectedNoteFolderName: selectFolder.name
@@ -70,7 +70,7 @@ class App extends React.Component {
                 />} 
             />
             <Route
-              path='/note/noteId'
+              path='/note/:noteId'
               render={() => 
                 <NotePageSidebar
                   folderName={this.state.selectedNoteFolderName}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Note.css';
 
 
@@ -7,7 +8,9 @@ function Note(props) {
 
   return (
     <div className='Note'>
-      <h2 className='noteTitle' id={props.note.id} onClick={e => props.handleNote(e.target.id)}>{props.note.name}</h2>
+      <h2 className='noteTitle' >
+        <Link to={`/note/${props.note.id}`} id={props.note.id} onClick={e => props.handleNote(e.target.id)}>{props.note.name}</Link>
+      </h2>
       <div className='noteDetails'>
         <p className='modified'>Modified on {formattedDate}</p>
         <button className='deleteBtn'>Delete Note</button>
