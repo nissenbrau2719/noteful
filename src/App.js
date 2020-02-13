@@ -1,10 +1,11 @@
 import React from 'react';
-// import { Route, Link } from 'react-router-dom';
+import { Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 import dummyStore from './dummy-store';
 import Sidebar from './Sidebar/Sidebar';
 import NoteList from './NoteList/NoteList';
 import NotePage from './NotePage/NotePage';
+import NotePageSidebar from './NotePageSidebar/NotePageSidebar';
 
 
 class App extends React.Component {
@@ -13,57 +14,95 @@ class App extends React.Component {
     this.state = {
       folders: dummyStore.folders,
       notes: dummyStore.notes,
-      selectedFolder: "",
-      selectedNote: "",
+      selectedFolder: {},
+      selectedNote: {},
+      selectedNoteFolderName: "",
       displayNotes: dummyStore.notes,
     }
   }
 
   handleFolder = (folderId) => {
+    let selectFolder = this.state.folders.find(folder => folder.id === folderId)
     let selectDisplayNotes = this.state.notes.filter(note => note.folderId === folderId);
     this.setState({
-      selectedFolder: folderId,
+      selectedFolder: selectFolder,
       displayNotes: selectDisplayNotes
     });
   }
 
   handleNote = (noteId) => {
+    let selectNote = this.state.notes.find(note => note.id === noteId);
+    let selectFolder = this.state.folder.find(folder => folder.id === selectNote.folder.id)
     this.setState({
-      selectedNote: noteId
+      selectedNote: selectNote,
+      selectedNoteFolderName: selectFolder.name
     })
   }
 
- 
-
 
   render() {
-
-    let notePageNote;
-    let notePageFolder;
-    
-    if (this.state.selectedNote !== "") {
-      notePageNote = this.state.notes.find(note => {
-        if(note.id === this.state.selectedNote) {
-          return note;
-        }
-      })
-
-      notePageFolder = this.state.folders.find(folder => {
-        if(folder.id === notePageNote.folderId) {
-          return folder;
-        }
-      })
-    }
     
     return (
       <div className='App'>
         <header>
-          <h1>Noteful</h1>
+          <h1>
+            <Link className='heading' to='/'>Noteful</Link>
+          </h1>
+          
         </header>
         <main>
-          <Sidebar className="Sidebar" folders={ this.state.folders} handleFolder={ this.handleFolder } />
-          <NoteList className="NoteList" notes={ this.state.displayNotes } handleNote={ this.handleNote } />
-          { this.state.selectedNote && <NotePage note={ notePageNote } folderName={ notePageFolder.name } /> }
+          <Switch>
+            <Route 
+              exact 
+              path='/' 
+              render={() => 
+                <Sidebar  
+                  folders={ this.state.folders } 
+                  handleFolder={ this.handleFolder } 
+                />}
+            />
+            <Route
+              path='/folder/:folderId'
+              render={() => 
+                <Sidebar 
+                  folders={ this.state.folders } 
+                  handleFolder={ this.handleFolder } 
+                />} 
+            />
+            <Route
+              path='/note/noteId'
+              render={() => 
+                <NotePageSidebar
+                  folderName={this.state.selectedNoteFolderName}
+                />}
+            />
+          </Switch>
+          <Switch>
+            <Route
+              exact
+              path='/'
+              render={() => 
+                <NoteList 
+                  notes={ this.state.notes }
+                  handleNote={ this.handleNote }
+                />}
+            />
+            <Route
+              path='/folder/:folderId'
+              render={() => 
+                <NoteList 
+                  notes={ this.state.displayNotes }
+                  handleNote={ this.handleNote }
+                />}
+            />
+            <Route
+              path='note/:noteId'
+              render={() => 
+                <NotePage
+                  note={this.state.selectedNote}
+                />}
+            />
+          </Switch>
         </main>
       </div>
       

@@ -1,0 +1,12 @@
+.noteSidebar {
+  flex: 1;
+  border-right: solid black 1px;
+  max-width: 200px;
+  text-align: center;
+}
+
+.goBackBtn {
+  padding: 10px;
+  width: 80%;
+  margin: 5px;
+}

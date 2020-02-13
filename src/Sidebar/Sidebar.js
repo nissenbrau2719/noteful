@@ -1,20 +1,27 @@
-import React from 'react';
-import './Sidebar.css';
-// import { NavLink } from 'react-router-dom';
-
+import React from "react";
+import "./Sidebar.css";
+import { NavLink } from "react-router-dom";
 
 function Sidebar(props) {
-
   const folderList = props.folders.map(folder => {
-      return <div key={folder.id} id={folder.id} className='folderLink' onClick={(e) => props.handleFolder(e.target.id)}>
-     {folder.name}
-    </div>
+    return (
+      <NavLink to={`/folder/${folder.id}`}>
+        <div
+          key={folder.id}
+          id={folder.id}
+          className="folderLink"
+          onClick={e => props.handleFolder(e.target.id)}
+        >
+          {folder.name}
+        </div>
+      </NavLink>
+    );
   });
 
-  return(
+  return (
     <div className="sideNav">
       {folderList}
-      <button className='addFolderBtn'>Add Folder</button>
+      <button className="addFolderBtn">Add Folder</button>
     </div>
   );
 }
