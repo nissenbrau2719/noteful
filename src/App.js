@@ -12,10 +12,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       folders: dummyStore.folders,
-      notes: dummyStore.notes,
+      notes: dummyStore.notes
     };
   }
-
 
   render() {
     return (
@@ -33,29 +32,31 @@ class App extends React.Component {
               exact
               path="/"
               render={routeProps => (
-                <Sidebar
-                  folders={this.state.folders}
-                  {...routeProps}
-                />
+                <Sidebar folders={this.state.folders} {...routeProps} />
               )}
             />
             <Route
               path="/folder/:folderId"
               render={routeProps => (
-                <Sidebar
-                  folders={this.state.folders}
-                  {...routeProps}
-                />
+                <Sidebar folders={this.state.folders} {...routeProps} />
               )}
             />
             <Route
               path="/note/:noteId"
-              render={routeProps => (
-                <NotePageSidebar
-                  folderName={routeProps.match.params.folderName}
-                  {...routeProps}
-                />
-              )}
+              render={routeProps => {
+                const note = this.state.notes.find(
+                  note => note.id === routeProps.match.params.noteId
+                );
+                const noteFolder = this.state.folders.find(
+                  folder => folder.id === note.folderId
+                );
+                return (
+                  <NotePageSidebar
+                    folderName={noteFolder.name}
+                    {...routeProps}
+                  />
+                );
+              }}
             />
           </Switch>
           <Switch>
@@ -63,24 +64,16 @@ class App extends React.Component {
               exact
               path="/"
               render={routeProps => (
-                <NoteList
-                  notes={this.state.notes}
-                  {...routeProps}
-                />
+                <NoteList notes={this.state.notes} {...routeProps} />
               )}
             />
             <Route
               path="/folder/:folderId"
               render={routeProps => {
                 const displayNotes = this.state.notes.filter(
-                      note => note.folderId === routeProps.match.params.folderId
-                    )
-                return (
-                  <NoteList
-                    notes={displayNotes}
-                    {...routeProps}
-                  />
+                  note => note.folderId === routeProps.match.params.folderId
                 );
+                return <NoteList notes={displayNotes} {...routeProps} />;
               }}
             />
             <Route
@@ -90,12 +83,7 @@ class App extends React.Component {
                   note => note.id === routeProps.match.params.noteId
                 );
 
-                return (
-                  <NotePage 
-                    note={note}
-                    {...routeProps}
-                  />
-                );
+                return <NotePage note={note} {...routeProps} />;
               }}
             />
           </Switch>

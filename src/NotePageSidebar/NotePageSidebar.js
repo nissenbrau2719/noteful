@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import './NotePageSidebar.css';
 
 function NotePageSidebar(props) {
@@ -10,4 +11,4 @@ function NotePageSidebar(props) {
   )
 }
 
-export default NotePageSidebar;
+export default withRouter(NotePageSidebar);
