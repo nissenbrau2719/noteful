@@ -6,6 +6,7 @@ import Sidebar from "./Sidebar/Sidebar";
 import NoteList from "./NoteList/NoteList";
 import NotePage from "./NotePage/NotePage";
 import NotePageSidebar from "./NotePageSidebar/NotePageSidebar";
+import NotefulContext from './NotefulContext';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,6 +16,8 @@ class App extends React.Component {
       notes: dummyStore.notes
     };
   }
+
+  static contextType = NotefulContext;
 
   render() {
     return (
