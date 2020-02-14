@@ -46,79 +46,95 @@ class App extends React.Component {
       })
   }
 
-  render() {
-    return (
-      <div className="App">
-        <header>
-          <h1>
-            <Link className="heading" to="/">
-              Noteful
-            </Link>
-          </h1>
-        </header>
-        <main>
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={routeProps => (
-                <Sidebar folders={this.state.folders} {...routeProps} />
-              )}
-            />
-            <Route
-              path="/folder/:folderId"
-              render={routeProps => (
-                <Sidebar folders={this.state.folders} {...routeProps} />
-              )}
-            />
-            <Route
-              path="/note/:noteId"
-              render={routeProps => {
-                const note = this.state.notes.find(
-                  note => note.id === routeProps.match.params.noteId
-                );
-                const noteFolder = this.state.folders.find(
-                  folder => folder.id === note.folderId
-                );
-                return (
-                  <NotePageSidebar
-                    folderName={noteFolder.name}
-                    {...routeProps}
-                  />
-                );
-              }}
-            />
-          </Switch>
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={routeProps => (
-                <NoteList notes={this.state.notes} {...routeProps} />
-              )}
-            />
-            <Route
-              path="/folder/:folderId"
-              render={routeProps => {
-                const displayNotes = this.state.notes.filter(
-                  note => note.folderId === routeProps.match.params.folderId
-                );
-                return <NoteList notes={displayNotes} {...routeProps} />;
-              }}
-            />
-            <Route
-              path="/note/:noteId"
-              render={routeProps => {
-                const note = this.state.notes.find(
-                  note => note.id === routeProps.match.params.noteId
-                );
+  deleteNote = (noteId) => {
+    updatedNotes = this.state.notes.filter(note => note.id !== noteId)
+    this.setState({
+      notes: updatedNotes
+    })
+  }
 
-                return <NotePage note={note} {...routeProps} />;
-              }}
-            />
-          </Switch>
-        </main>
-      </div>
+  render() {
+    const contextValue = {
+      notes: this.state.notes,
+      folders: this.state.folders,
+      deleteNote: this.deleteNote,
+    }
+
+    return (
+      <NotefulContext.Provider value={contextValue}>
+        <div className="App">
+          <header>
+            <h1>
+              <Link className="heading" to="/">
+                Noteful
+              </Link>
+            </h1>
+          </header>
+          <main>
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={routeProps => (
+                  <Sidebar folders={this.state.folders} {...routeProps} />
+                )}
+              />
+              <Route
+                path="/folder/:folderId"
+                render={routeProps => (
+                  <Sidebar folders={this.state.folders} {...routeProps} />
+                )}
+              />
+              <Route
+                path="/note/:noteId"
+                render={routeProps => {
+                  const note = this.state.notes.find(
+                    note => note.id === routeProps.match.params.noteId
+                  );
+                  const noteFolder = this.state.folders.find(
+                    folder => folder.id === note.folderId
+                  );
+                  return (
+                    <NotePageSidebar
+                      folderName={noteFolder.name}
+                      {...routeProps}
+                    />
+                  );
+                }}
+              />
+            </Switch>
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={routeProps => (
+                  <NoteList notes={this.state.notes} {...routeProps} />
+                )}
+              />
+              <Route
+                path="/folder/:folderId"
+                render={routeProps => {
+                  const displayNotes = this.state.notes.filter(
+                    note => note.folderId === routeProps.match.params.folderId
+                  );
+                  return <NoteList notes={displayNotes} {...routeProps} />;
+                }}
+              />
+              <Route
+                path="/note/:noteId"
+                render={routeProps => {
+                  const note = this.state.notes.find(
+                    note => note.id === routeProps.match.params.noteId
+                  );
+
+                  return <NotePage note={note} {...routeProps} />;
+                }}
+              />
+            </Switch>
+          </main>
+        </div>
+      </NotefulContext.Provider>
+      
     );
   }
 }
