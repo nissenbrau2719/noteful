@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Link, Switch } from "react-router-dom";
 import "./App.css";
-import dummyStore from "./dummy-store";
 import Sidebar from "./Sidebar/Sidebar";
 import NoteList from "./NoteList/NoteList";
 import NotePage from "./NotePage/NotePage";
@@ -12,12 +11,40 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      folders: dummyStore.folders,
-      notes: dummyStore.notes
+      folders: [],
+      notes: [],
+      error: null,
     };
   }
 
   static contextType = NotefulContext;
+
+  componentDidMount() {
+    const foldersEndpoint = "http://localhost:9090/folders";
+    const notesEndpoint = "http://localhost:9090/notes";
+
+    Promise.all([
+      fetch(foldersEndpoint),
+      fetch(notesEndpoint)
+    ])
+      .then(([foldersRes, notesRes]) => {
+        if(!foldersRes.ok || !notesRes.ok) {
+          throw new Error('failed to fetch data')
+        }
+       return Promise.all([foldersRes.json(), notesRes.json()])
+      })
+      .then(([foldersData, notesData]) => {
+        this.setState({
+          folders: foldersData,
+          notes: notesData,
+        })
+      })
+      .catch(error => {
+        this.setState({
+          error: error.message
+        })
+      })
+  }
 
   render() {
     return (
