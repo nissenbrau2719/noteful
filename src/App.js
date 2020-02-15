@@ -47,7 +47,7 @@ class App extends React.Component {
   }
 
   deleteNote = (noteId) => {
-    updatedNotes = this.state.notes.filter(note => note.id !== noteId)
+    const updatedNotes = this.state.notes.filter(note => note.id !== noteId)
     this.setState({
       notes: updatedNotes
     })
@@ -75,15 +75,11 @@ class App extends React.Component {
               <Route
                 exact
                 path="/"
-                render={routeProps => (
-                  <Sidebar folders={this.state.folders} {...routeProps} />
-                )}
+                component={ Sidebar }
               />
               <Route
                 path="/folder/:folderId"
-                render={routeProps => (
-                  <Sidebar folders={this.state.folders} {...routeProps} />
-                )}
+                component = { Sidebar }
               />
               <Route
                 path="/note/:noteId"
