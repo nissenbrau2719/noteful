@@ -6,6 +6,7 @@ import NotefulContext from '../NotefulContext';
 class Sidebar extends React.Component {
   static contextType = NotefulContext
   render() {
+    console.log(this.props)
     const folderList = this.context.folders.map(folder => {
       return (
         <li key={folder.id} className="folderItem">
@@ -23,10 +24,10 @@ class Sidebar extends React.Component {
     });
 
     return (
-      <div className="sideNav">
+      <nav className="sideNav">
         <ul className="folderList">{folderList}</ul>
         <button className="addFolderBtn">Add Folder</button>
-      </div>
+      </nav>
     );
   }
   

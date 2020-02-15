@@ -103,18 +103,11 @@ class App extends React.Component {
               <Route
                 exact
                 path="/"
-                render={routeProps => (
-                  <NoteList notes={this.state.notes} {...routeProps} />
-                )}
+                component={ NoteList }
               />
               <Route
                 path="/folder/:folderId"
-                render={routeProps => {
-                  const displayNotes = this.state.notes.filter(
-                    note => note.folderId === routeProps.match.params.folderId
-                  );
-                  return <NoteList notes={displayNotes} {...routeProps} />;
-                }}
+                component={ NoteList }
               />
               <Route
                 path="/note/:noteId"
