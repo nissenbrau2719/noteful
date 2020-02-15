@@ -6,7 +6,6 @@ import NotefulContext from '../NotefulContext';
 class Sidebar extends React.Component {
   static contextType = NotefulContext
   render() {
-    console.log(this.props)
     const folderList = this.context.folders.map(folder => {
       return (
         <li key={folder.id} className="folderItem">

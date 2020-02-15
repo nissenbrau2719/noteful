@@ -83,20 +83,7 @@ class App extends React.Component {
               />
               <Route
                 path="/note/:noteId"
-                render={routeProps => {
-                  const note = this.state.notes.find(
-                    note => note.id === routeProps.match.params.noteId
-                  );
-                  const noteFolder = this.state.folders.find(
-                    folder => folder.id === note.folderId
-                  );
-                  return (
-                    <NotePageSidebar
-                      folderName={noteFolder.name}
-                      {...routeProps}
-                    />
-                  );
-                }}
+                component={ NotePageSidebar }
               />
             </Switch>
             <Switch>
