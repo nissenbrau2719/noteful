@@ -98,19 +98,12 @@ class App extends React.Component {
               />
               <Route
                 path="/note/:noteId"
-                render={routeProps => {
-                  const note = this.state.notes.find(
-                    note => note.id === routeProps.match.params.noteId
-                  );
-
-                  return <NotePage note={note} {...routeProps} />;
-                }}
+                component={ NotePage }
               />
             </Switch>
           </main>
         </div>
-      </NotefulContext.Provider>
-      
+      </NotefulContext.Provider>  
     );
   }
 }
