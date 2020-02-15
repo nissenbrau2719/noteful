@@ -5,13 +5,14 @@ import './NotePage.css';
 import NotefulContext from '../NotefulContext';
 
 function NotePage(props) {
+
   return (
     <NotefulContext.Consumer>
       {context => {
         const featuredNote = context.notes.find(note => note.id === props.match.params.noteId)
         return(
           <div className='noteMain'>
-            <Note note={featuredNote} />
+            <Note note={featuredNote} {...props}/>
             <p className='noteContent'>
               {featuredNote.content}
             </p>
