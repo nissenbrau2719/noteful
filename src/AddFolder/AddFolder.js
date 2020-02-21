@@ -1,0 +1,91 @@
+import React from 'react';
+import uuid from 'react-uuid';
+import NotefulContext from '../NotefulContext';
+
+class AddFolder extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      folderName: {
+        value: "",
+        touched: false
+      },
+      folderId: "",
+      error: null
+    }
+  }
+  
+  static contextType = NotefulContext
+
+  updateFolderName(folderName) {
+    this.setState({
+      folderName: {
+        value: folderName,
+        touched: true
+      }
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const newFolder = {
+      id: this.state.folderId,
+      name: this.state.folderName.value
+    }
+    console.log(newFolder)
+    const foldersEndpoint = "http://localhost:9090/folders"
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(newFolder),
+      headers: {
+        'content-type': 'application/json'
+      }
+    }
+    console.log(options.body)
+    fetch(foldersEndpoint, options)
+      .then(res => {
+        if(!res.ok) {
+          throw new Error('Failed to add new folder')
+        }
+        return res.json()
+      })
+      .then(() => {
+        this.context.addFolder(newFolder)
+      })
+      .then(() => this.props.history.push('/'))
+      .catch(error => this.setState({error: error.message}))
+  }
+
+  componentDidMount() {
+    const newFolderId = uuid();
+    this.setState({
+      folderId: newFolderId
+    })
+  }
+  
+  render() {
+    
+    return(
+      <form className="addFolderForm" onSubmit={e => this.handleSubmit(e)}>
+        <fieldset>
+          <legend><h2>Add a New Folder</h2></legend>
+          <label htmlFor="folderName">Folder Name:</label>          
+          <input
+            type="text"
+            className="folderName_input"
+            name="folderName"
+            id="folderName"
+            onChange={e => this.updateFolderName(e.target.value)}
+            required
+          />
+          <button type='submit' disabled={!this.state.folderName.touched || this.state.folderName.value.trim().length < 1}>
+            Submit Folder
+          </button>
+          
+        </fieldset>
+      </form>
+    )
+  }
+}
+
+export default AddFolder

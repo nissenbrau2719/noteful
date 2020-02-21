@@ -1,6 +1,6 @@
 import React from "react";
 import "./Sidebar.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import NotefulContext from '../NotefulContext';
 
 class Sidebar extends React.Component {
@@ -13,7 +13,7 @@ class Sidebar extends React.Component {
         <li key={folder.id} className="folderItem">
           <NavLink
             exact={true}
-            activeClassName="isActive"
+            activeClassName="active"
             to={`/folder/${folder.id}`}
             id={folder.id}
             className="folderLink"
@@ -27,8 +27,15 @@ class Sidebar extends React.Component {
 
     return (
       <nav className="sideNav">
-        <ul className="folderList">{folderList}</ul>
-        <button className="addFolderBtn">Add Folder</button>
+        <ul className="folderList">
+          {folderList}
+        </ul>
+        <Link to="/addFolder">
+          <button className="addFolderBtn">
+            Add Folder
+          </button>
+        </Link>
+        
       </nav>
     );
   }

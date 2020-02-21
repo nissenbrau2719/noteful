@@ -2,6 +2,7 @@ import React from 'react';
 import './NoteList.css';
 import Note from '../Note/Note';
 import NotefulContext from '../NotefulContext';
+import { Link } from 'react-router-dom';
 
 class NoteList extends React.Component {
   static defaultProps = {
@@ -22,7 +23,11 @@ class NoteList extends React.Component {
     return (
       <div className='noteList'>
         {notes}
-        <button className='addNoteBtn'>Add Note</button>
+        <Link to='/addNote' >
+          <button className='addNoteBtn'>
+            Add Note
+          </button>
+        </Link>
       </div>
     )
 
