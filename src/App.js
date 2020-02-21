@@ -74,6 +74,7 @@ class App extends React.Component {
       notes: this.state.notes,
       folders: this.state.folders,
       deleteNote: this.deleteNote,
+      addNote: this.addNote,
       addFolder: this.addFolder,
     }
 

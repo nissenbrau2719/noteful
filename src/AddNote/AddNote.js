@@ -81,7 +81,7 @@ export default class AddNote extends React.Component {
       modified: this.state.modified,
       content: this.state.content.value
     }
-    const notesEndpoint = "http://localhost:9090/folders"
+    const notesEndpoint = "http://localhost:9090/notes"
     const options = {
       method: 'POST',
       body: JSON.stringify(newNote),
