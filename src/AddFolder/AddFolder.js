@@ -32,7 +32,6 @@ class AddFolder extends React.Component {
       id: this.state.folderId,
       name: this.state.folderName.value
     }
-    console.log(newFolder)
     const foldersEndpoint = "http://localhost:9090/folders"
     const options = {
       method: 'POST',
@@ -52,8 +51,9 @@ class AddFolder extends React.Component {
       .then(() => {
         this.context.addFolder(newFolder)
       })
-      .then(() => this.props.history.push('/'))
+      
       .catch(error => this.setState({error: error.message}))
+      .then(() => this.props.history.push('/'))
   }
 
   componentDidMount() {

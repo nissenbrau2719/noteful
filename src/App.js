@@ -55,7 +55,7 @@ class App extends React.Component {
   }
 
   addFolder = (newFolder) => {
-    const updatedFolders = this.state.folders.push(newFolder)
+    const updatedFolders = this.state.folders.concat([newFolder])
     // updatedFolders.push(newFolder)
     this.setState({
       folders: updatedFolders

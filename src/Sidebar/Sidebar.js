@@ -8,7 +8,6 @@ class Sidebar extends React.Component {
   render() {
     const folderList = this.context.folders.map(folder => {
       const noteCount =  this.context.notes.filter(note => note.folderId === folder.id).length
-      
       return (
         <li key={folder.id} className="folderItem">
           <NavLink
@@ -35,7 +34,6 @@ class Sidebar extends React.Component {
             Add Folder
           </button>
         </Link>
-        
       </nav>
     );
   }
