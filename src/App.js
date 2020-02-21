@@ -6,7 +6,8 @@ import NoteList from "./NoteList/NoteList";
 import NotePage from "./NotePage/NotePage";
 import NotePageSidebar from "./NotePageSidebar/NotePageSidebar";
 import NotefulContext from './NotefulContext';
-import AddFolder from "./AddFolder/AddFolder"
+import AddFolder from "./AddFolder/AddFolder";
+import AddNote from "./AddNote/AddNote";
 
 class App extends React.Component {
   constructor(props) {
@@ -56,9 +57,15 @@ class App extends React.Component {
 
   addFolder = (newFolder) => {
     const updatedFolders = this.state.folders.concat([newFolder])
-    // updatedFolders.push(newFolder)
     this.setState({
       folders: updatedFolders
+    })
+  }
+
+  addNote = (newNote) => {
+    const updatedNotes = this.state.notes.concat([newNote])
+    this.setState({
+      notes: updatedNotes
     })
   }
 
@@ -99,6 +106,10 @@ class App extends React.Component {
                 path="/addFolder"
                 component={ NotePageSidebar }
               />
+              <Route
+                path="/addNote"
+                component={ NotePageSidebar }
+              />
             </Switch>
             <Switch>
               <Route
@@ -117,6 +128,10 @@ class App extends React.Component {
               <Route
                 path="/addFolder"
                 component={ AddFolder }
+              />
+              <Route
+                path="/addNote"
+                component={ AddNote }
               />
             </Switch>
           </main>
