@@ -1,6 +1,7 @@
 import React from 'react'
 import uuid from 'react-uuid'
 import NotefulContext from '../NotefulContext'
+import './AddNote.css'
 
 export default class AddNote extends React.Component {
   constructor(props) {
@@ -25,33 +26,6 @@ export default class AddNote extends React.Component {
   }
 
   static contextType = NotefulContext
-
-  // updateName(name) {
-  //   this.setState({
-  //     name: {
-  //       value: name,
-  //       touched: true
-  //     }
-  //   })
-  // }
-
-  // updateContent(content) {
-  //   this.setState({
-  //     content: {
-  //       value: content,
-  //       touched: true
-  //     }
-  //   })
-  // }
-
-  // updateFolderId(folder) {
-  //   this.setState({
-  //     folderId: {
-  //       value: folder,
-  //       touched: true
-  //     }
-  //   })
-  // }
 
   createIdAndModified() {
     const newId = uuid()

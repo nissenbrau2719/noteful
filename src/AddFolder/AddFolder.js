@@ -79,7 +79,7 @@ class AddFolder extends React.Component {
             required
           />
           <button type='submit' disabled={!this.state.folderName.touched || this.state.folderName.value.trim().length < 1}>
-            Submit Folder
+            Create Folder
           </button>
           
         </fieldset>

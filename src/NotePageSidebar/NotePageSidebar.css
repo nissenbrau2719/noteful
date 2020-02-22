@@ -1,7 +1,5 @@
 .noteSidebar {
   flex: 1;
-  border-right: solid black 1px;
-  max-width: 20%;
   text-align: center;
 }
 

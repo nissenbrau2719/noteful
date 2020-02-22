@@ -2,6 +2,7 @@ import React from "react";
 import "./Sidebar.css";
 import { NavLink, Link } from "react-router-dom";
 import NotefulContext from '../NotefulContext';
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 class Sidebar extends React.Component {
   static contextType = NotefulContext
@@ -25,16 +26,19 @@ class Sidebar extends React.Component {
     });
 
     return (
-      <nav className="sideNav">
-        <ul className="folderList">
-          {folderList}
-        </ul>
-        <Link to="/addFolder">
-          <button className="addFolderBtn">
-            Add Folder
-          </button>
-        </Link>
-      </nav>
+      <ErrorBoundary>
+        <div className="sideNav">
+          <ul className="folderList">
+            {folderList}
+          </ul>
+          <Link to="/addFolder">
+            <button className="addFolderBtn">
+              Add Folder
+            </button>
+          </Link>
+        </div>
+      </ErrorBoundary>
+      
     );
   }
   

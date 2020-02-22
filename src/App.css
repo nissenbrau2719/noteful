@@ -1,13 +1,75 @@
+.App {
+  overflow: hidden;
+}
+
 h1 {
   text-align: center;
 }
 
+h2 {
+  color: whitesmoke;
+}
+a {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+p {
+  color: grey;
+}
+
 header {
-  border-bottom: 1px solid black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 85px;
+  background-color: rgb(0, 6, 93);
+}
+
+.mainPanel {
+  display: flex;
+  padding-top: 85px;
+  background-color: rgb(6, 10, 68);
+  min-height: 100vh;
+}
+
+nav {
+  min-width: 125px;
+  width: 25%;
+  position: fixed;
+  top: 85px;
+  bottom: 0;
+  overflow: auto;
+  background-color: rgb(0, 6, 93);
 }
 
 main {
-  display: flex;
+  margin-left: 25%;
   width: 100%;
+  background-color: rgb(6, 10, 68);
+  height: 100%;
 }
 
+button {
+  background: none;
+  color: whitesmoke;
+  border: 1px solid slateblue;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px;
+}
+
+label {
+  color: grey;
+  padding-right: 10px;
+}
+
+form {
+  max-width: 600px;
+  padding: 10px;
+}
+
+fieldset {
+  border: none;
+}

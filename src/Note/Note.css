@@ -1,13 +1,14 @@
 .Note {
- border: 1px solid black;
+ border: 1px solid slateblue;
  margin: 10px;
  padding: 0 10px;
  max-width: 600px;
+ border-radius: 5px;
+ background-color:  rgb(0, 6, 93);
 }
 
 .deleteBtn {
-  padding: 5px;
-  margin: 5px;
+ background-color: rgb(6, 10, 68);
 }
 
 .noteDetails {

@@ -8,6 +8,7 @@ import NotePageSidebar from "./NotePageSidebar/NotePageSidebar";
 import NotefulContext from './NotefulContext';
 import AddFolder from "./AddFolder/AddFolder";
 import AddNote from "./AddNote/AddNote";
+import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
 class App extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class App extends React.Component {
     ])
       .then(([foldersRes, notesRes]) => {
         if(!foldersRes.ok || !notesRes.ok) {
-          throw new Error('failed to fetch data')
+          throw new Error('failed to retrieve data')
         }
        return Promise.all([foldersRes.json(), notesRes.json()])
       })
@@ -88,54 +89,62 @@ class App extends React.Component {
               </Link>
             </h1>
           </header>
-          <main>
-            <Switch>
-              <Route
-                exact
-                path="/"
-                component={ Sidebar }
-              />
-              <Route
-                path="/folder/:folderId"
-                component = { Sidebar }
-              />
-              <Route
-                path="/note/:noteId"
-                component={ NotePageSidebar }
-              />
-              <Route
-                path="/addFolder"
-                component={ NotePageSidebar }
-              />
-              <Route
-                path="/addNote"
-                component={ NotePageSidebar }
-              />
-            </Switch>
-            <Switch>
-              <Route
-                exact
-                path="/"
-                component={ NoteList }
-              />
-              <Route
-                path="/folder/:folderId"
-                component={ NoteList }
-              />
-              <Route
-                path="/note/:noteId"
-                component={ NotePage }
-              />
-              <Route
-                path="/addFolder"
-                component={ AddFolder }
-              />
-              <Route
-                path="/addNote"
-                component={ AddNote }
-              />
-            </Switch>
-          </main>
+          <div className="mainPanel">
+            <nav>
+              <ErrorBoundary>
+                <Switch>
+                  <Route
+                    exact
+                    path="/"
+                    component={ Sidebar }
+                  />
+                  <Route
+                    path="/folder/:folderId"
+                    component = { Sidebar }
+                  />
+                  <Route
+                    path="/note/:noteId"
+                    component={ NotePageSidebar }
+                  />
+                  <Route
+                    path="/addFolder"
+                    component={ NotePageSidebar }
+                  />
+                  <Route
+                    path="/addNote"
+                    component={ NotePageSidebar }
+                  />
+                </Switch>
+              </ErrorBoundary>
+            </nav>
+            <main>
+              <ErrorBoundary>
+                <Switch>
+                  <Route
+                    exact
+                    path="/"
+                    component={ NoteList }
+                  />
+                  <Route
+                    path="/folder/:folderId"
+                    component={ NoteList }
+                  />
+                  <Route
+                    path="/note/:noteId"
+                    component={ NotePage }
+                  />
+                  <Route
+                    path="/addFolder"
+                    component={ AddFolder }
+                  />
+                  <Route
+                    path="/addNote"
+                    component={ AddNote }
+                  />
+                </Switch>
+              </ErrorBoundary>
+            </main>
+          </div>
         </div>
       </NotefulContext.Provider>  
     );

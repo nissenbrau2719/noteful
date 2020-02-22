@@ -1,8 +1,8 @@
 .sideNav {
   flex: 1;
-  border-right: solid black 1px;
-  /* max-width: 200px; */
+  width: 100%;
   text-align: center;
+  overflow: auto;
 }
 
 .folderLink {
@@ -16,17 +16,19 @@
   padding: 10px;
   width: 80%;
   margin: 5px;
+  background-color: rgb(6, 10, 68);
 }
 
 .active {
-  background-color: aqua;
+  background-color: slateblue;
 }
 
 .folderItem {
   list-style: none;
-
-  border: 1px solid black;
+  border: 1px solid slateblue;
+  border-radius: 5px;
   margin: 10px;
+  background-color: rgb(6, 10, 68);
 }
 
 .folderList {
