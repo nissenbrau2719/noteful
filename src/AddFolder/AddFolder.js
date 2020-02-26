@@ -1,6 +1,8 @@
 import React from 'react';
 import uuid from 'react-uuid';
 import NotefulContext from '../NotefulContext';
+import ValidationError from '../ValidationError/ValidationError';
+import './AddFolder.css'
 
 class AddFolder extends React.Component {
   constructor(props) {
@@ -63,8 +65,13 @@ class AddFolder extends React.Component {
     })
   }
   
+  validateName() {
+    if(this.state.folderName.value.trim().length === 0) {
+      return "You must name your folder"
+    }
+  }
   render() {
-    
+    const nameError = this.validateName();
     return(
       <form className="addFolderForm" onSubmit={e => this.handleSubmit(e)}>
         <fieldset>
@@ -78,7 +85,8 @@ class AddFolder extends React.Component {
             onChange={e => this.updateFolderName(e.target.value)}
             required
           />
-          <button type='submit' disabled={!this.state.folderName.touched || this.state.folderName.value.trim().length < 1}>
+          {this.state.folderName.touched && <ValidationError message={nameError} />}
+          <button className="submitFolderBtn" type='submit' disabled={!this.state.folderName.touched || this.state.folderName.value.trim().length < 1}>
             Create Folder
           </button>
           

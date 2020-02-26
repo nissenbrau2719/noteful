@@ -2,3 +2,19 @@ input, textarea, select {
    display: block;
    margin: 5px 0 10px 0;
 }
+
+.submitNoteBtn:disabled {
+   background: rgb(0, 3, 42);
+   border: 1px solid slateblue;
+}
+
+.submitNoteBtn {
+   background: slateblue;
+   color: rgb(0, 3, 42);
+   font-weight: bold;
+   border: 2px solid rgb(0, 3, 42);
+}
+
+.submitNoteBtn:disabled:hover {
+   cursor: not-allowed;
+}

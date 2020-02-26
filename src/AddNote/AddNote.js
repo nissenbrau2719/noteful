@@ -1,6 +1,7 @@
 import React from 'react'
 import uuid from 'react-uuid'
 import NotefulContext from '../NotefulContext'
+import ValidationError from '../ValidationError/ValidationError'
 import './AddNote.css'
 
 export default class AddNote extends React.Component {
@@ -48,12 +49,13 @@ export default class AddNote extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    const { id, name, folderId, modified, content } = this.state
     const newNote = {
-      id: this.state.id,
-      name: this.state.name.value,
-      folderId: this.state.folderId.value,
-      modified: this.state.modified,
-      content: this.state.content.value
+      id: id,
+      name: name.value,
+      folderId: folderId.value,
+      modified: modified,
+      content: content.value
     }
     const notesEndpoint = "http://localhost:9090/notes"
     const options = {
@@ -83,10 +85,34 @@ export default class AddNote extends React.Component {
     this.createIdAndModified();
   }
 
+  validateName() {
+    const name = this.state.name.value.trim();
+    if(name.length === 0){
+      return "A note title is required"
+    }
+  }
+
+  validateFolder() {
+    const folder = this.state.folderId.value;
+    if(folder === "") {
+      return "You must select a folder to hold your note"
+    }
+  }
+
+  validateContent() {
+    const content = this.state.content.value.trim();
+    if(content.length === 0) {
+      return "Why add a note that doesn't say anything?"
+    }
+  }
+
   render() {
+    const nameError = this.validateName();
+    const folderError = this.validateFolder();
+    const contentError = this.validateContent();
     const folderList = this.context.folders.map(folder => (
       <option key={folder.id} value={folder.id}>{folder.name}</option>
-    ))
+    ));
     return(
       <form className="addNoteForm" onSubmit={e => this.handleSubmit(e)}>
         <fieldset>
@@ -101,8 +127,11 @@ export default class AddNote extends React.Component {
             onChange={e => this.handleChange(e)}
             required
           />
+          {this.state.name.touched && <ValidationError message={nameError} />}
+          <label className="noteFormLabel" htmlFor="folderId" >Folder:</label>
           <select 
             name="folderId" 
+            id="folderId"
             onChange={e => this.handleChange(e)}
             value={this.state.folderId.value}
             required
@@ -110,6 +139,7 @@ export default class AddNote extends React.Component {
             <option value="">Select a Folder...</option>
             {folderList}
           </select>
+          {this.state.folderId.touched && <ValidationError message={folderError} />}
           <label className="noteFormLabel" htmlFor="content">Content:</label>
           <textarea 
             id="content" 
@@ -118,14 +148,16 @@ export default class AddNote extends React.Component {
             onChange={e => this.handleChange(e)}
             required
           />
+          {this.state.content.touched && <ValidationError message={contentError} />}
           <button 
+            className="submitNoteBtn"
             type='submit' 
             disabled={
-              (!this.state.name.touched || this.state.name.value.trim().length < 1) &&
-              (!this.state.folderId.touched || this.state.folderId.value === "") &&
-              (!this.state.content.touched || this.state.content.value.trim().length < 1)
+              this.validateContent() ||
+              this.validateFolder() ||
+              this.validateContent()
             }>
-            Submit Note
+            Create Note
           </button>
         </fieldset>
       </form>

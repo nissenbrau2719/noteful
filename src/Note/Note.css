@@ -1,5 +1,4 @@
 .Note {
- border: 1px solid slateblue;
  margin: 10px;
  padding: 0 10px;
  max-width: 600px;
@@ -8,7 +7,7 @@
 }
 
 .deleteBtn {
- background-color: rgb(6, 10, 68);
+ background-color: rgb(0, 3, 42);
 }
 
 .noteDetails {
@@ -16,4 +15,28 @@
   justify-content: space-between;
 }
 
+.noteTitle {
+  padding-top: 10px;
+}
 
+.modified {
+  font-style: italic;
+}
+
+@media screen and (max-width: 500px) {
+  .Note {
+    text-align: center;
+  }
+  .noteDetails {
+    flex-direction: column;
+  }
+
+  .modified {
+    margin: 0;
+  }
+
+  .noteTitle {
+    margin: 0;
+    padding-top: 5px;
+  }
+}

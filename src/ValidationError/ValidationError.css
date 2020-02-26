@@ -1,4 +1,5 @@
-.errorMessage {
+.error {
   color: magenta;
   font-style: italic;
+  margin-bottom: 10px;
 }

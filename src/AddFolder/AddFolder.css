@@ -1,0 +1,14 @@
+.submitFolderBtn:disabled {
+  background: rgb(0, 3, 42);
+  border: 1px solid slateblue;
+}
+
+.submitFolderBtn:disabled:hover {
+  cursor: not-allowed;
+}
+
+.submitFolderBtn {
+  background-color: slateblue;
+  color: rgb(0, 3, 42);
+  border: 2px solid rgb(0, 3, 42);
+}
