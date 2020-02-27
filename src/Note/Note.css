@@ -39,4 +39,9 @@
     margin: 0;
     padding-top: 5px;
   }
+
+  .deleteBtn {
+    margin: 5px auto 10px auto;
+    width: 200px;
+  }
 }
