@@ -1,12 +1,12 @@
 .sideNav {
   flex: 1;
-  width: 100%;
   text-align: center;
   align-items: center;
   justify-content: center;
   overflow-y: auto;
   overflow-x: hidden;
   margin: 0;
+
 }
 
 .folderLink {
@@ -14,8 +14,8 @@
   text-align: center;
   padding: 10px;
   width: 94%;
-  border-radius: 5px;
-  margin: 5px auto;
+  border-radius: 5px 0 0 5px;
+  margin: 5px 0 5px auto;
   background-color: rgb(0, 3, 42);
 }
 
@@ -35,7 +35,7 @@
 .folderItem {
   display: block;
   padding: 0;
-  margin: 0 auto;
+  margin: 0 0 0 auto;
   width: 90%;
   max-width: 90%;
 }
@@ -56,5 +56,11 @@
     padding: 5px;
   }
 
+  .folderItem {
+    margin: 0 auto;
+  }
 
+  .folderLink {
+    border-radius: 5px;
+  }
 }
