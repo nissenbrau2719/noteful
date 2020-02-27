@@ -1,7 +1,7 @@
 .Note {
  margin: 10px;
- padding: 0 10px;
- max-width: 600px;
+ padding: 0 30px;
+ max-width: 768px;
  border-radius: 5px;
  background-color:  rgb(0, 6, 93);
 }
@@ -23,6 +23,11 @@
   font-style: italic;
 }
 
+@media screen and (max-width: 768px) {
+  .Note {
+    padding: 0 10px;
+  }
+}
 @media screen and (max-width: 500px) {
   .Note {
     text-align: center;
