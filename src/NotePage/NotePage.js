@@ -2,13 +2,13 @@ import React from 'react';
 import './NotePage.css';
 import Note from '../Note/Note';
 import './NotePage.css';
-import NotefulContext from '../NotefulContext';
 
 class NotePage extends React.Component {
   state = {
-    note: {}
+    note: {},
+    error: null
   }
-  static contextType = NotefulContext
+
 
   componentDidMount() {
     const noteId = this.props.match.params.noteId
@@ -21,6 +21,11 @@ class NotePage extends React.Component {
         return res.json()
       })
       .then(data => this.setState({note: data}))
+      .catch(error => {
+        this.setState({
+          error: error.message
+        })
+      })
   }
     
 

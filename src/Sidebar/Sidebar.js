@@ -20,7 +20,6 @@ class Sidebar extends React.Component {
           >
             {folder.name}<span className="count">{noteCount}</span>
           </NavLink>
-          
         </li>
       );
     });
@@ -30,6 +29,7 @@ class Sidebar extends React.Component {
         <div className="sideNav">
           <ul className="folderList">
             {folderList}
+            {folderList.length === 0 && <div className="errorMessage">Couldn't fetch folders, please try again later</div>}
           </ul>
           <Link to="/addFolder">
             <button className="addFolderBtn">

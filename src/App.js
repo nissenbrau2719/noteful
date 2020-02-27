@@ -8,7 +8,7 @@ import NotePageSidebar from "./NotePageSidebar/NotePageSidebar";
 import NotefulContext from './NotefulContext';
 import AddFolder from "./AddFolder/AddFolder";
 import AddNote from "./AddNote/AddNote";
-import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -91,7 +91,6 @@ class App extends React.Component {
           </header>
           <div className="mainPanel">
             <nav>
-              <ErrorBoundary>
                 <Switch>
                   <Route
                     exact
@@ -115,10 +114,8 @@ class App extends React.Component {
                     component={ NotePageSidebar }
                   />
                 </Switch>
-              </ErrorBoundary>
             </nav>
             <main>
-              <ErrorBoundary>
                 <Switch>
                   <Route
                     exact
@@ -142,7 +139,6 @@ class App extends React.Component {
                     component={ AddNote }
                   />
                 </Switch>
-              </ErrorBoundary>
             </main>
           </div>
         </div>

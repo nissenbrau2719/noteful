@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Note.css';
 import NotefulContext from '../NotefulContext';
+import PropTypes from 'prop-types';
 
 
 function Note(props) {
@@ -39,6 +40,7 @@ function Note(props) {
             <h2 className='noteTitle' >
               <Link to={`/note/${props.note.id}`} id={props.note.id} >{props.note.name}</Link>
             </h2>
+            {!props.note.id && <div className="errorMessage">Couldn't get this note</div>}
             <div className='noteDetails'>
               <p className='modified'>Modified on {formattedDate}</p>
               <button className='deleteBtn' id={props.note.id} onClick={e => handleDelete(e.target.id)}>Delete Note</button>
@@ -54,4 +56,7 @@ Note.defaultProps = {
   deleteNote: () => {}
 }
 
+Note.propTypes = {
+  note: PropTypes.object.isRequired
+}
 export default Note;

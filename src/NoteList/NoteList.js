@@ -23,6 +23,7 @@ class NoteList extends React.Component {
     return (
       <div className='noteList'>
         {notes}
+        {notes.length === 0 && <div className="errorMessage">No notes found</div>}
         <Link to='/addNote' >
           <button className='addNoteBtn'>
             Add Note
