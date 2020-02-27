@@ -1,5 +1,13 @@
 .App {
   overflow: hidden;
+  display: grid;
+  grid-template-rows: 85px auto;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas: 
+  'header header'
+  'nav main';
+  height: 100vh;
+  background-color: rgb(0, 3, 42);
 }
 
 h1 {
@@ -21,35 +29,20 @@ p {
 }
 
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 85px;
   background-color: rgb(0, 6, 93);
-}
-
-.mainPanel {
-  display: flex;
-  padding-top: 85px;
-  background-color: rgb(0, 3, 42);
-  min-height: 100vh;
+  grid-area: header;
 }
 
 nav {
-  min-width: 125px;
-  width: 25%;
-  position: fixed;
-  top: 85px;
-  bottom: 0;
   background-color: rgb(0, 6, 93);
+  overflow: auto;
+  grid-area: nav;
 }
 
 main {
-  margin-left: 25%;
-  width: 100%;
   background-color: rgb(0, 3, 42);
-  height: 100%;
+  overflow: auto;
+  grid-area: main;
 }
 
 button {
@@ -86,19 +79,32 @@ fieldset {
   border: none;
 }
 
+@media screen and (max-width: 768px) {
+  nav {
+    font-size: .8em;
+  }
+
+  h2 {
+    margin-bottom: 0;
+  }
+}
+
 @media screen and (max-width: 500px) {
-  .mainPanel {
-    flex-direction: column;
-    padding-top: 50px;
+
+  .App{
+    grid-template-rows: 50px 100px auto;
+    grid-template-columns: 1fr;
   }
 
   nav {
-    position: static;
-    width: 100%;
+    grid-row: 2 / 3;
+    grid-column: 1/-1;
   }
 
   main {
     margin: 0;
+    grid-row: 3/4;
+    grid-column: 1/-1;
   }
 
   button {
@@ -112,6 +118,7 @@ fieldset {
 
   header {
     height: 50px;
+    grid-row: 1 / 2;
   }
 
   h2 {

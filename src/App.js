@@ -89,58 +89,56 @@ class App extends React.Component {
               </Link>
             </h1>
           </header>
-          <div className="mainPanel">
-            <nav>
-                <Switch>
-                  <Route
-                    exact
-                    path="/"
-                    component={ Sidebar }
-                  />
-                  <Route
-                    path="/folder/:folderId"
-                    component = { Sidebar }
-                  />
-                  <Route
-                    path="/note/:noteId"
-                    component={ NotePageSidebar }
-                  />
-                  <Route
-                    path="/addFolder"
-                    component={ NotePageSidebar }
-                  />
-                  <Route
-                    path="/addNote"
-                    component={ NotePageSidebar }
-                  />
-                </Switch>
-            </nav>
-            <main>
-                <Switch>
-                  <Route
-                    exact
-                    path="/"
-                    component={ NoteList }
-                  />
-                  <Route
-                    path="/folder/:folderId"
-                    component={ NoteList }
-                  />
-                  <Route
-                    path="/note/:noteId"
-                    component={ NotePage }
-                  />
-                  <Route
-                    path="/addFolder"
-                    component={ AddFolder }
-                  />
-                  <Route
-                    path="/addNote"
-                    component={ AddNote }
-                  />
-                </Switch>
-            </main>
-          </div>
+          <nav>
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  component={ Sidebar }
+                />
+                <Route
+                  path="/folder/:folderId"
+                  component = { Sidebar }
+                />
+                <Route
+                  path="/note/:noteId"
+                  component={ NotePageSidebar }
+                />
+                <Route
+                  path="/addFolder"
+                  component={ NotePageSidebar }
+                />
+                <Route
+                  path="/addNote"
+                  component={ NotePageSidebar }
+                />
+              </Switch>
+          </nav>
+          <main>
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  component={ NoteList }
+                />
+                <Route
+                  path="/folder/:folderId"
+                  component={ NoteList }
+                />
+                <Route
+                  path="/note/:noteId"
+                  component={ NotePage }
+                />
+                <Route
+                  path="/addFolder"
+                  component={ AddFolder }
+                />
+                <Route
+                  path="/addNote"
+                  component={ AddNote }
+                />
+              </Switch>
+          </main>
         </div>
       </NotefulContext.Provider>  
     );
