@@ -84,8 +84,10 @@ class AddFolder extends React.Component {
             id="folderName"
             onChange={e => this.updateFolderName(e.target.value)}
             required
+            aria-required="true"
+            aria-describedby="nameError"
           />
-          {this.state.folderName.touched && <ValidationError message={nameError} />}
+          {this.state.folderName.touched && <ValidationError message={nameError} id="nameError"/>}
           <button className="submitFolderBtn" type='submit' disabled={!this.state.folderName.touched || this.state.folderName.value.trim().length < 1}>
             Create Folder
           </button>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "./Sidebar.css";
 import { NavLink, Link } from "react-router-dom";
 import NotefulContext from '../NotefulContext';
@@ -15,7 +15,6 @@ class Sidebar extends React.Component {
             exact={true}
             activeClassName="active"
             to={`/folder/${folder.id}`}
-            id={folder.id}
             className="folderLink"
           >
             {folder.name}<span className="count">{noteCount}</span>
@@ -26,7 +25,7 @@ class Sidebar extends React.Component {
 
     return (
       <ErrorBoundary>
-        <div className="sideNav">
+        <Fragment>
           <ul className="folderList">
             {folderList}
             {folderList.length === 0 && <div className="errorMessage">Couldn't fetch folders, please try again later</div>}
@@ -36,7 +35,7 @@ class Sidebar extends React.Component {
               Add Folder
             </button>
           </Link>
-        </div>
+        </Fragment>
       </ErrorBoundary>
       
     );

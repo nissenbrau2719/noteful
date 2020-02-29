@@ -126,8 +126,10 @@ export default class AddNote extends React.Component {
             value={this.state.name.value}
             onChange={e => this.handleChange(e)}
             required
+            aria-required="true"
+            aria-describedby="nameError"
           />
-          {this.state.name.touched && <ValidationError message={nameError} />}
+          {this.state.name.touched && <ValidationError message={nameError} id="nameError"/>}
           <label className="noteFormLabel" htmlFor="folderId" >Folder:</label>
           <select 
             name="folderId" 
@@ -135,11 +137,13 @@ export default class AddNote extends React.Component {
             onChange={e => this.handleChange(e)}
             value={this.state.folderId.value}
             required
+            aria-required="true"
+            aria-describedby="folderError"
           >
             <option value="">Select a Folder...</option>
             {folderList}
           </select>
-          {this.state.folderId.touched && <ValidationError message={folderError} />}
+          {this.state.folderId.touched && <ValidationError message={folderError} id="folderError" />}
           <label className="noteFormLabel" htmlFor="content">Content:</label>
           <textarea 
             id="content" 
@@ -147,8 +151,10 @@ export default class AddNote extends React.Component {
             value={this.state.content.value} 
             onChange={e => this.handleChange(e)}
             required
+            aria-required="true"
+            aria-describedby="contentError"
           />
-          {this.state.content.touched && <ValidationError message={contentError} />}
+          {this.state.content.touched && <ValidationError message={contentError} id="contentError" />}
           <button 
             className="submitNoteBtn"
             type='submit' 

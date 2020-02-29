@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import { withRouter } from "react-router-dom";
 import "./NotePageSidebar.css";
 import NotefulContext from '../NotefulContext';
@@ -14,12 +14,12 @@ function NotePageSidebar(props) {
           featuredFolder = context.folders.find(folder => folder.id === featuredNote.folderId)
         }
         return(
-          <nav className="noteSidebar">
+          <Fragment>
             <button className="goBackBtn" onClick={() => props.history.goBack()}>
               Go back
             </button>
             {featuredNote && (<h2 className="noteFolder">{featuredFolder.name}</h2>)}
-          </nav>
+          </Fragment>
         )
       }}
     </NotefulContext.Consumer>

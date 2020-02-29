@@ -9,7 +9,7 @@ input, textarea, select {
 }
 
 .submitNoteBtn {
-   background: slateblue;
+   background: rgb(168, 157, 241);
    color: rgb(0, 3, 42);
    font-weight: bold;
    border: 2px solid rgb(0, 3, 42);

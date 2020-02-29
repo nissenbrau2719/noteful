@@ -5,12 +5,13 @@ import PropTypes from 'prop-types'
 export default function ValidationError(props) {
   if(props.message) {
     return (
-      <div className="error">{props.message}</div>
+      <div className="error" id={props.id}>{props.message}</div>
     );
   }
   return <></>
 }
 
 ValidationError.propTypes = {
-  message: PropTypes.string
+  message: PropTypes.string,
+  id: PropTypes.string,
 }
