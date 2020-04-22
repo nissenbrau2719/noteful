@@ -16,7 +16,7 @@ export default class AddNote extends React.Component {
         value: "",
         touched: false
       },
-      folderId: {
+      folder: {
         value: "",
         touched: false
       },
@@ -49,11 +49,11 @@ export default class AddNote extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { id, name, folderId, modified, content } = this.state
+    const { id, name, folder, modified, content } = this.state
     const newNote = {
       id: id,
       name: name.value,
-      folderId: folderId.value,
+      folder: folder.value,
       modified: modified,
       content: content.value
     }
@@ -93,7 +93,7 @@ export default class AddNote extends React.Component {
   }
 
   validateFolder() {
-    const folder = this.state.folderId.value;
+    const folder = this.state.folder.value;
     if(folder === "") {
       return "You must select a folder to hold your note"
     }
@@ -130,12 +130,12 @@ export default class AddNote extends React.Component {
             aria-describedby="nameError"
           />
           {this.state.name.touched && <ValidationError message={nameError} id="nameError"/>}
-          <label className="noteFormLabel" htmlFor="folderId" >Folder:</label>
+          <label className="noteFormLabel" htmlFor="folder" >Folder:</label>
           <select 
-            name="folderId" 
-            id="folderId"
+            name="folder" 
+            id="folder"
             onChange={e => this.handleChange(e)}
-            value={this.state.folderId.value}
+            value={this.state.folder.value}
             required
             aria-required="true"
             aria-describedby="folderError"
@@ -143,7 +143,7 @@ export default class AddNote extends React.Component {
             <option value="">Select a Folder...</option>
             {folderList}
           </select>
-          {this.state.folderId.touched && <ValidationError message={folderError} id="folderError" />}
+          {this.state.folder.touched && <ValidationError message={folderError} id="folderError" />}
           <label className="noteFormLabel" htmlFor="content">Content:</label>
           <textarea 
             id="content" 

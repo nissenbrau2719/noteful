@@ -14,7 +14,7 @@ class NoteList extends React.Component {
 
   render() {
     const displayNotes = this.props.match.params.folderId
-      ? this.context.notes.filter(note => note.folderId === this.props.match.params.folderId)
+      ? this.context.notes.filter(note => note.folder === this.props.match.params.folderId)
       : this.context.notes
     const notes = displayNotes.map(note => {
     return <Note key={note.id} note={note}  />

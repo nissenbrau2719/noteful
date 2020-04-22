@@ -8,7 +8,7 @@ class Sidebar extends React.Component {
   static contextType = NotefulContext
   render() {
     const folderList = this.context.folders.map(folder => {
-      const noteCount =  this.context.notes.filter(note => note.folderId === folder.id).length
+      const noteCount =  this.context.notes.filter(note => note.folder === folder.id).length
       return (
         <li key={folder.id} className="folderItem">
           <NavLink

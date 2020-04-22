@@ -11,7 +11,7 @@ function NotePageSidebar(props) {
       {context => {
         if(props.match.params.noteId) {
           featuredNote = context.notes.find(note => note.id === props.match.params.noteId)
-          featuredFolder = context.folders.find(folder => folder.id === featuredNote.folderId)
+          featuredFolder = context.folders.find(folder => folder.id === featuredNote.folder)
         }
         return(
           <Fragment>
