@@ -11,7 +11,7 @@ function Note(props) {
     <NotefulContext.Consumer>
       {context => {
         const handleDelete = (noteId) => {
-          const noteEndpoint = `http://localhost:9090/notes/${noteId}`;
+          const noteEndpoint = `http://localhost:8000/api/notes/${noteId}`;
           const options = { 
             method: 'DELETE',
             headers: {

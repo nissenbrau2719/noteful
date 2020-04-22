@@ -24,8 +24,8 @@ class App extends React.Component {
   static contextType = NotefulContext;
 
   componentDidMount() {
-    const foldersEndpoint = "http://localhost:9090/folders";
-    const notesEndpoint = "http://localhost:9090/notes";
+    const foldersEndpoint = "http://localhost:8000/api/folders";
+    const notesEndpoint = "http://localhost:8000/api/notes";
 
     Promise.all([
       fetch(foldersEndpoint),

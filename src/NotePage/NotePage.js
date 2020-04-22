@@ -12,7 +12,7 @@ class NotePage extends React.Component {
 
   componentDidMount() {
     const noteId = this.props.match.params.noteId
-    const url = `http://localhost:9090/notes/${noteId}`
+    const url = `http://localhost:8000/api/notes/${noteId}`
     fetch(url)
       .then(res => {
         if(!res.ok) {

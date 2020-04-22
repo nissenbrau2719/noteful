@@ -34,7 +34,7 @@ class AddFolder extends React.Component {
       id: this.state.folderId,
       name: this.state.folderName.value
     }
-    const foldersEndpoint = "http://localhost:9090/folders"
+    const foldersEndpoint = "http://localhost:8000/api/folders"
     const options = {
       method: 'POST',
       body: JSON.stringify(newFolder),
