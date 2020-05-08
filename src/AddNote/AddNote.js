@@ -1,5 +1,5 @@
 import React from 'react'
-import uuid from 'react-uuid'
+// import uuid from 'react-uuid'
 import NotefulContext from '../NotefulContext'
 import ValidationError from '../ValidationError/ValidationError'
 import './AddNote.css'
@@ -20,22 +20,11 @@ export default class AddNote extends React.Component {
         value: "",
         touched: false
       },
-      id: "",
-      modified: "",
       error: null,
     }
   }
 
   static contextType = NotefulContext
-
-  createIdAndModified() {
-    const newId = uuid()
-    const modified = new Date()
-    this.setState({
-      id: newId,
-      modified: modified
-    })
-  }
   
   handleChange = (event) => {
     const { value, name } = event.target
@@ -49,12 +38,10 @@ export default class AddNote extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { id, name, folder, modified, content } = this.state
+    const { name, folder, content } = this.state
     const newNote = {
-      id: id,
       name: name.value,
       folder: folder.value,
-      modified: modified,
       content: content.value
     }
     const notesEndpoint = "http://localhost:8000/api/notes"
@@ -73,16 +60,13 @@ export default class AddNote extends React.Component {
         }
         return res.json()
       })
-      .then(() => {
-        this.context.addNote(newNote)
+      .then(data => {
+        console.log(data)
+        this.context.addNote(data)
       })
       
       .catch(error => this.setState({error: error.message}))
       .then(() => this.props.history.push('/'))
-  }
-
-  componentDidMount() {
-    this.createIdAndModified();
   }
 
   validateName() {

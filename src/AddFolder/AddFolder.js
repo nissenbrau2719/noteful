@@ -1,5 +1,5 @@
 import React from 'react';
-import uuid from 'react-uuid';
+// import uuid from 'react-uuid';
 import NotefulContext from '../NotefulContext';
 import ValidationError from '../ValidationError/ValidationError';
 import './AddFolder.css'
@@ -31,7 +31,6 @@ class AddFolder extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const newFolder = {
-      id: this.state.folderId,
       name: this.state.folderName.value
     }
     const foldersEndpoint = "http://localhost:8000/api/folders"
@@ -42,7 +41,6 @@ class AddFolder extends React.Component {
         'content-type': 'application/json'
       }
     }
-    console.log(options.body)
     fetch(foldersEndpoint, options)
       .then(res => {
         if(!res.ok) {
@@ -50,20 +48,13 @@ class AddFolder extends React.Component {
         }
         return res.json()
       })
-      .then(() => {
-        this.context.addFolder(newFolder)
+      .then((data) => {
+        this.context.addFolder(data)
       })
-      
       .catch(error => this.setState({error: error.message}))
       .then(() => this.props.history.push('/'))
   }
 
-  componentDidMount() {
-    const newFolderId = uuid();
-    this.setState({
-      folderId: newFolderId
-    })
-  }
   
   validateName() {
     if(this.state.folderName.value.trim().length === 0) {

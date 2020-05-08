@@ -24,27 +24,30 @@ class NotePageSidebar extends React.Component {
 
   componentDidMount() {
     const noteId = this.props.match.params.noteId
-    const noteEndpoint = `http://localhost:8000/api/notes/${noteId}`
-    fetch(noteEndpoint)
-     .then(res => {
-       if(!res.ok) {
-         throw new Error('Failed to fetch note data')
-       }
-       return res.json()
-     })
-     .then(data => this.setState({note: data}))
-     .then(() => {
-       const folderId = this.state.note.folder
-       const folderEndpoint = `http://localhost:8000/api/folders/${folderId}`
-       fetch(folderEndpoint)
-        .then(res => {
-          if(!res.ok) {
-            throw new Error('Failed to fetch folder data')
-          }
-          return res.json()
-          .then(data => this.setState({folder: data}))
-        })
-     })
+    if(noteId) {
+      const noteEndpoint = `http://localhost:8000/api/notes/${noteId}`
+      fetch(noteEndpoint)
+      .then(res => {
+        if(!res.ok) {
+          throw new Error('Failed to fetch note data')
+        }
+        return res.json()
+      })
+      .then(data => this.setState({note: data}))
+      .then(() => {
+        const folderId = this.state.note.folder
+        const folderEndpoint = `http://localhost:8000/api/folders/${folderId}`
+        fetch(folderEndpoint)
+          .then(res => {
+            if(!res.ok) {
+              throw new Error('Failed to fetch folder data')
+            }
+            return res.json()
+            .then(data => this.setState({folder: data}))
+          })
+      })
+    }
+    
   }
 
   render() {
