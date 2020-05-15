@@ -57,6 +57,13 @@ class App extends React.Component {
     })
   }
 
+  deleteFolder = (folderId) => {
+    const updatedFolders =this.state.folders.filter(folder => folder.id !== folderId)
+    this.setState({
+      folders: updatedFolders
+    })
+  }
+
   addFolder = (newFolder) => {
     const updatedFolders = this.state.folders.concat([newFolder])
     this.setState({
@@ -78,6 +85,7 @@ class App extends React.Component {
       deleteNote: this.deleteNote,
       addNote: this.addNote,
       addFolder: this.addFolder,
+      deleteFolder: this.deleteFolder,
     }
 
     return (

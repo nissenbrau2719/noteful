@@ -1,12 +1,9 @@
 .folderLink {
-  display: inline-block;
+  display: flex;
   text-align: center;
   padding: 10px;
-  width: 95%;
-  border-radius: 5px 0 0 5px;
-  margin: 5px 0 5px auto;
-  background-color: rgb(0, 3, 42);
-  font-weight: bold;
+  max-width: 100%;
+  font-weight: 600;
 }
 
 .addFolderBtn {
@@ -16,30 +13,42 @@
 }
 
 .active {
-  background-color: rgb(168, 157, 241);
-  color: rgb(0, 3, 42);
-  font-weight: bold;
+  color: rgb(214,1,248);
+  font-weight: 900;
   border: 1px dotted rgb(40, 0, 78);
 }
 
 .folderItem {
-  display: block;
+  display: flex;
+  justify-content: space-between;
   padding: 0;
-  margin: 0 0 0 auto;
-  width: 90%;
-  max-width: 90%;
+  margin: 5px 0 5px auto;
+  width: 100%;
+  max-width: 100%;
+  background-color: rgb(0, 3, 42);
 }
 
 .folderList {
   padding: 0;
   margin: 0;
   list-style: none;
+  max-width: 100%;
 }
 
 .count {
-  float: right;
-  padding-right: 10px;
+  align-self: center;
+  padding: 5px;
+  color: whitesmoke;
+  font-weight: 600;
 }
+
+.fa-trash {
+  align-self: center;
+  padding: 5px;
+  color: whitesmoke;
+  cursor: pointer;
+}
+
 
 @media screen and (max-width: 500px) {
   .folderLink {
