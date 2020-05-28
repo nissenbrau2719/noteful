@@ -1,16 +1,38 @@
 import React, { Fragment } from "react";
 import "./Sidebar.css";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, withRouter } from "react-router-dom";
 import NotefulContext from '../NotefulContext';
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 class Sidebar extends React.Component {
   static contextType = NotefulContext
-
+  state = {
+    error: null
+  }
+  
   handleDelete = (folderId) => {
     let confirmDelete = window.confirm('Delete this folder? All associated notes will also be deleted.')
     if(confirmDelete === true) {
-      this.context.deleteFolder(folderId)
+      const folderEndpoint = `http://localhost:8000/api/folders/${folderId}`;
+      const options = { 
+        method: 'DELETE',
+        headers: {
+          'content-type': 'application/json'
+        }
+      }
+      fetch(folderEndpoint, options)
+        .then(res => {
+          if(!res.ok) {
+            throw new Error("Failed to delete")
+          }
+        })
+        .then(() => {
+          this.context.deleteFolder(folderId)
+          if(this.props.match.params.folderId === folderId) {
+            this.props.history.push('/')
+          }
+          
+        })
     }
   }
   render() {
@@ -55,4 +77,4 @@ class Sidebar extends React.Component {
   
 }
 
-export default Sidebar;
+export default withRouter(Sidebar);
