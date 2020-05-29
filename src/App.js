@@ -8,6 +8,7 @@ import NotePageSidebar from "./NotePageSidebar/NotePageSidebar";
 import NotefulContext from './NotefulContext';
 import AddFolder from "./AddFolder/AddFolder";
 import AddNote from "./AddNote/AddNote";
+import EditNote from "./EditNote/EditNote";
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
 
 
@@ -78,6 +79,14 @@ class App extends React.Component {
     })
   }
 
+  editNote = (updatedNoteData) => {
+    const updatedNotes = this.state.notes.filter(note => note.id !== updatedNoteData.id).concat([updatedNoteData])
+    this.setState({
+      notes: updatedNotes
+    })
+    // console.log(this.state.notes)
+  }
+
   render() {
     const contextValue = {
       notes: this.state.notes,
@@ -86,6 +95,7 @@ class App extends React.Component {
       addNote: this.addNote,
       addFolder: this.addFolder,
       deleteFolder: this.deleteFolder,
+      editNote: this.editNote
     }
 
     return (
@@ -122,6 +132,10 @@ class App extends React.Component {
                   path="/addNote"
                   component={ NotePageSidebar }
                 />
+                <Route
+                  path="/editNote/:noteId"
+                  component={ NotePageSidebar }
+                />
               </Switch>
             </nav>
           </ErrorBoundary>
@@ -148,6 +162,10 @@ class App extends React.Component {
                 <Route
                   path="/addNote"
                   component={ AddNote }
+                />
+                <Route
+                  path="/editNote/:noteId"
+                  component={ EditNote }
                 />
               </Switch>
             </main>

@@ -2,9 +2,10 @@ import React from 'react'
 import NotefulContext from '../NotefulContext'
 import ValidationError from '../ValidationError/ValidationError'
 import './EditNote.css'
+import { withRouter } from 'react-router-dom'
 
 
-export default class EditNote extends React.Component {
+class EditNote extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -44,7 +45,7 @@ export default class EditNote extends React.Component {
           value: data.content
         },
         folder: {
-          value: data.value
+          value: data.folder
         }
       }))
       .catch(error => {
@@ -185,3 +186,5 @@ export default class EditNote extends React.Component {
     )
   }
 }
+
+export default withRouter(EditNote)
