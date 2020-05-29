@@ -2,6 +2,7 @@ import React from 'react';
 import './NotePage.css';
 import Note from '../Note/Note';
 import './NotePage.css';
+import { Link } from 'react-router-dom';
 
 class NotePage extends React.Component {
   state = {
@@ -37,6 +38,9 @@ class NotePage extends React.Component {
         <p className='noteContent'>
           {note.content}
         </p>
+        <Link to={`/edit/${note.id}`}>
+          <button>Edit Note</button>
+        </Link>
       </div>
     );
   }
