@@ -69,7 +69,7 @@ class EditNote extends React.Component {
     event.preventDefault();
     const { name, folder, content } = this.state
     const noteId = this.props.match.params.noteId
-    const newNote = {
+    const newNoteData = {
       name: name.value,
       folder: folder.value,
       content: content.value
@@ -77,22 +77,23 @@ class EditNote extends React.Component {
     const noteEndpoint = `http://localhost:8000/api/notes/${noteId}`
     const options = {
       method: 'PATCH',
-      body: JSON.stringify(newNote),
+      body: JSON.stringify(newNoteData),
       headers: {
         'content-type': 'application/json'
       }
     }
-    console.log(options.body)
     fetch(noteEndpoint, options)
       .then(res => {
         if(!res.ok) {
           throw new Error('Failed to update note')
         }
-        return res.json()
       })
-      .then(data => {
-        console.log(data)
-        this.context.editNote(data)
+      .then(() => {
+        const updatedNoteData = {
+          ...newNoteData,
+          id: noteId
+        }
+        this.context.editNote(updatedNoteData)
       })
       
       .catch(error => this.setState({error: error.message}))

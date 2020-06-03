@@ -73,6 +73,7 @@ class App extends React.Component {
   }
 
   addNote = (newNote) => {
+    console.log('adding note', newNote)
     const updatedNotes = this.state.notes.concat([newNote])
     this.setState({
       notes: updatedNotes
@@ -80,11 +81,13 @@ class App extends React.Component {
   }
 
   editNote = (updatedNoteData) => {
+    console.log('updating note', updatedNoteData)
     const updatedNotes = this.state.notes.filter(note => note.id !== updatedNoteData.id).concat([updatedNoteData])
+    
     this.setState({
-      notes: updatedNotes
+      notes: updatedNotes,
     })
-    // console.log(this.state.notes)
+    
   }
 
   render() {
