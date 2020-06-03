@@ -91,7 +91,8 @@ class EditNote extends React.Component {
       .then(() => {
         const updatedNoteData = {
           ...newNoteData,
-          id: noteId
+          id: noteId,
+          modified: new Date()
         }
         this.context.editNote(updatedNoteData)
       })
