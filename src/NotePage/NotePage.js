@@ -39,7 +39,7 @@ class NotePage extends React.Component {
           {note.content}
         </p>
         <Link to={`/editNote/${note.id}`}>
-          <button>Edit Note</button>
+          <button className="editNoteBtn">Edit Note</button>
         </Link>
       </div>
     );

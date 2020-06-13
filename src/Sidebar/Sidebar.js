@@ -41,7 +41,7 @@ class Sidebar extends React.Component {
       const noteCount =  this.context.notes.filter(note => note.folder === folder.id).length
       return (
         <li key={folder.id} className="folderItem">
-          <i className='fa fa-trash' aria-hidden='true' id={folder.id} onClick={e => this.handleDelete(e.target.id)}></i>
+          <i className='fa fa-trash' aria-hidden='true' aria-label={`delete ${folder.name} folder`} id={folder.id} title={`Delete ${folder.name} Folder`} onClick={e => this.handleDelete(e.target.id)}></i>
           <NavLink
             exact={true}
             activeClassName="active"
