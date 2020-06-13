@@ -8,8 +8,8 @@ import NotePageSidebar from "./NotePageSidebar/NotePageSidebar";
 import NotefulContext from './NotefulContext';
 import AddFolder from "./AddFolder/AddFolder";
 import AddNote from "./AddNote/AddNote";
-import EditNote from "./EditNote/EditNote";
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
+import EditNote from "./EditNote/EditNote";
 
 
 class App extends React.Component {
@@ -59,9 +59,11 @@ class App extends React.Component {
   }
 
   deleteFolder = (folderId) => {
-    const updatedFolders =this.state.folders.filter(folder => folder.id !== folderId)
+    const updatedFolders = this.state.folders.filter(folder => folder.id !== folderId)
+    const updatedNotes = this.state.notes.filter(note => note.folder !== folderId)
     this.setState({
-      folders: updatedFolders
+      folders: updatedFolders,
+      notes: updatedNotes
     })
   }
 
@@ -73,7 +75,6 @@ class App extends React.Component {
   }
 
   addNote = (newNote) => {
-    console.log('adding note', newNote)
     const updatedNotes = this.state.notes.concat([newNote])
     this.setState({
       notes: updatedNotes
@@ -81,13 +82,10 @@ class App extends React.Component {
   }
 
   editNote = (updatedNoteData) => {
-    console.log('updating note', updatedNoteData)
-    const updatedNotes = this.state.notes.filter(note => note.id !== updatedNoteData.id).concat([updatedNoteData])
-    
+    const updatedNotes = this.state.notes.filter(note => note.id !== updatedNoteData.id).concat([ updatedNoteData ])
     this.setState({
-      notes: updatedNotes,
+      notes: updatedNotes
     })
-    
   }
 
   render() {
