@@ -105,7 +105,9 @@ class App extends React.Component {
           <header>
             <h1>
               <Link className="heading" to="/">
+                <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                 Noteful
+                
               </Link>
             </h1>
           </header>
